@@ -65,7 +65,7 @@ jobs:
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
-          password: ${{ secrets.registryPassword }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       # we use docker buildx to create a builder instance and then build and push the image
       - name: select docker driver
         run: |
