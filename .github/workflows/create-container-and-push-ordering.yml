@@ -16,7 +16,7 @@ jobs:
     uses: ./.github/workflows/create-container-and-push.yml
     with:
       imageRepository: 'ordering'
-      containerRegistry: 'ghcr.io/vriesmarcel'
+      containerRegistry: 'ghcr.io/${{ github.repository_owner }}'
       dockerfilePath: 'ordering/Dockerfile'
       namespace: 'globoticket'
     secrets:

@@ -34,7 +34,7 @@ spec:
     spec:
       containers:
       - name: catalog
-        image: ghcr.io/vriesmarcel/catalog:#{Build.version}#
+        image: ghcr.io/frenkyfix1987/catalog:#{Build.version}#
         resources:
           requests:
             memory: "500Mi"

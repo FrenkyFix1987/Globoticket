@@ -30,7 +30,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: ghcr.io/vriesmarcel/frontend:#{Build.version}#
+        image: ghcr.io/frenkyfix1987/frontend:#{Build.version}#
         resources:
           requests:
             memory: "500Mi"
