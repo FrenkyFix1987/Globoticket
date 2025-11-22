@@ -83,8 +83,9 @@ jobs:
 
       # lowercase repository name
       - name: lowercase container registry
+        id: github_container_registry
         run: |
-          echo "GITHUB_DOCKER_REGISTRY,,}" >> $[GITHUB_ENV]
+          echo "repository=${GITHUB_DOCKER_REGISTRY,,}" >> $[GITHUB_OUTPUT]
       # build and push the image to the container registry
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -92,7 +93,7 @@ jobs:
             context: ${{github.workspace}}
             file: ${{inputs.dockerfilePath}}
             push: true
-            tags: ${{env.GITHUB_DOCKER_REGISTRY}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
+            tags: ${{steps.github_container_registry.outputs}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
             cache-from: type=gha
             cache-to: type=gha,mode=max
             labels: ${{steps.meta.outputs.labels}}
