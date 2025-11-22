@@ -76,6 +76,11 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: actions-with-actions/globoticket 
+
+      # lowercase repository name
+      - name: lowercase container registry
+        run: |
+          echo "REPO=${${{inputs.containerRegistry}},,}" >> $[GITHUB_ENV]
       # build and push the image to the container registry
       - name: Build and push
         uses: docker/build-push-action@v4
