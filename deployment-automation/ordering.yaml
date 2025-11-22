@@ -33,7 +33,7 @@ spec:
     spec:
       containers:
       - name: ordering
-        image: ghcr.io/vriesmarcel/ordering:#{Build.version}#
+        image: ghcr.io/frenkyfix1987/ordering:#{Build.version}#
         resources:
           requests:
             memory: "500Mi"

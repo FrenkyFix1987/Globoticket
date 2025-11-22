@@ -13,7 +13,7 @@ on:
       containerRegistry:
         required: true
         type: string
-        default: 'ghcr.io/vriesmarcel'
+        default: 'ghcr.io/frenkyfix1987'
       dockerfilePath:
         required: true
         type: string
