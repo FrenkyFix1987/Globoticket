@@ -41,6 +41,10 @@ on:
         required: true
         type: string
         default: 'globoticket'
+
+env: 
+  GITHUB_DOCKER_REGISTRY: ${{inputs.containerRegistry}}
+
 jobs:
   build:
     # we check out the sources, determine the version number and login to the container registry  
@@ -79,8 +83,9 @@ jobs:
 
       # lowercase repository name
       - name: lowercase container registry
+        id: github_container_registry
         run: |
-          echo "REPO=${${{inputs.containerRegistry}},,}" >> $[GITHUB_ENV]
+          echo "repository=${GITHUB_DOCKER_REGISTRY,,}" >> $[GITHUB_OUTPUT]
       # build and push the image to the container registry
       - name: Build and push
         uses: docker/build-push-action@v4
@@ -88,7 +93,7 @@ jobs:
             context: ${{github.workspace}}
             file: ${{inputs.dockerfilePath}}
             push: true
-            tags: ${{inputs.containerRegistry}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
+            tags: ${{steps.github_container_registry.outputs}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
             cache-from: type=gha
             cache-to: type=gha,mode=max
             labels: ${{steps.meta.outputs.labels}}
