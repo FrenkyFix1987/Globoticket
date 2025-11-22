@@ -93,7 +93,7 @@ jobs:
             context: ${{github.workspace}}
             file: ${{inputs.dockerfilePath}}
             push: true
-            tags: ${{steps.github_container_registry.outputs}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
+            tags: ${{steps.github_container_registry.outputs.repository}}/${{inputs.imageRepository}}:${{env.GitVersion_SemVer}}
             cache-from: type=gha
             cache-to: type=gha,mode=max
             labels: ${{steps.meta.outputs.labels}}
